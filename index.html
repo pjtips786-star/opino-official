@@ -71,15 +71,11 @@
         
         <!-- Left Wing: High Momentum Green Growth Wave (SVG Asset) -->
         <svg class="absolute top-[8%] left-[-2%] w-[50%] h-auto text-yesGreen" viewBox="0 0 600 400" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <!-- Neon Area Gradient Shading under curve -->
             <path d="M0 350 C 100 360, 150 240, 250 200 C 350 160, 400 90, 560 50 L 560 400 L 0 400 Z" fill="url(#proboGreenGlow)" opacity="0.15"/>
-            <!-- Main Crisp Sharp Analytics Trend line -->
             <path d="M0 350 C 100 360, 150 240, 250 200 C 350 160, 400 90, 560 50" stroke="currentColor" stroke-width="5" stroke-linecap="round"/>
-            <!-- Target Flash Sparkle -->
             <circle cx="250" cy="200" r="6" fill="#030712" stroke="currentColor" stroke-width="3"/>
             <circle cx="560" cy="50" r="10" fill="#00e676" class="animate-ping" opacity="0.4"/>
             <circle cx="560" cy="50" r="6" fill="#00e676"/>
-            <!-- Tech Interface Crossbars -->
             <path d="M120 160 H132 M126 154 V166" stroke="white" stroke-opacity="0.2" stroke-width="2"/>
             <path d="M420 290 H432 M426 284 V296" stroke="white" stroke-opacity="0.2" stroke-width="2"/>
             <defs>
@@ -95,7 +91,6 @@
             <path d="M30 50 Q 150 100, 240 220 T 470 340 L 470 400 L 30 400 Z" fill="url(#proboRedGlow)" opacity="0.1"/>
             <path d="M30 50 Q 150 100, 240 220 T 470 340" stroke="currentColor" stroke-width="5" stroke-linecap="round"/>
             <circle cx="240" cy="220" r="6" fill="#030712" stroke="currentColor" stroke-width="3"/>
-            <!-- Digital Abstract Diamonds -->
             <rect x="360" y="90" width="14" height="14" rx="2" transform="rotate(45 360 90)" stroke="currentColor" stroke-width="2.5" fill="none"/>
             <rect x="140" y="290" width="10" height="10" rx="1.5" transform="rotate(45 140 290)" stroke="currentColor" stroke-width="2" fill="none"/>
             <defs>
@@ -106,7 +101,7 @@
             </defs>
         </svg>
 
-        <!-- Dynamic Giant Watermark Labels (Probo Corporate Vibe) -->
+        <!-- Dynamic Giant Watermark Labels -->
         <div class="absolute top-[22%] right-[5%] font-black text-[130px] text-white/[0.025] select-none tracking-widest">PRO-LIVE</div>
         <div class="absolute bottom-[28%] left-[4%] font-black text-[130px] text-white/[0.025] select-none tracking-widest">P2P-HUB</div>
 
@@ -134,7 +129,7 @@
             </div>
 
             <div>
-                <button onclick="window.location.href='#download-section'" class="bg-gradient-to-r from-accentCyan to-blue-700 text-white font-bold px-6 py-2.5 rounded-xl hover:opacity-90 transition-all duration-300 shadow-cyanGlow text-sm flex items-center gap-2">
+                <button onclick="triggerDownload()" class="bg-gradient-to-r from-accentCyan to-blue-700 text-white font-bold px-6 py-2.5 rounded-xl hover:opacity-90 transition-all duration-300 shadow-cyanGlow text-sm flex items-center gap-2">
                     <span class="material-icons text-sm">download</span> Download APK
                 </button>
             </div>
@@ -483,8 +478,16 @@
             document.getElementById('app-progress-bar').style.width = `${yesPercent}%`;
         }
 
+        // BACKGROUND DOWNLOAD – no redirect, no new tab, direct download
         function triggerDownload() {
-window.location.href = "https://github.com/pjtips786-star/opino-official/releases/download/v1.0.0/Opino.app.v1.0.apk";
+            var apkUrl = "https://github.com/pjtips786-star/opino-official/releases/download/v1.0.0/Opino.app.v1.0.apk";
+            var iframe = document.createElement('iframe');
+            iframe.style.display = 'none';
+            iframe.src = apkUrl;
+            document.body.appendChild(iframe);
+            setTimeout(function() {
+                if (iframe && iframe.parentNode) iframe.parentNode.removeChild(iframe);
+            }, 5000);
         }
 
         window.onload = function() {
