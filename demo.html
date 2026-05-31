@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Opino - Real-Time Opinion Trading Platform</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brandDark: '#030712',      
+                        brandNavy: '#080f26',      
+                        brandCard: '#0f1938',      
+                        accentCyan: '#2563eb',     
+                        accentOrange: '#ff6b00',   
+                        goldCoin: '#fbbf24',       
+                        yesGreen: '#00e676',       
+                        noRed: '#ff3d00',         
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        cyanGlow: '0 0 30px rgba(37, 99, 235, 0.45)',
+                        orangeGlow: '0 0 25px rgba(255, 107, 0, 0.4)',
+                        phoneShadow: '0 30px 70px -15px rgba(37, 99, 235, 0.25)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #030712;
+            background-image: radial-gradient(circle at 50% 0%, #091538 0%, #030712 85%);
+        }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #030712; }
+        ::-webkit-scrollbar-thumb { background: #0f1938; border-radius: 4px; border: 2px solid #030712; }
+        ::-webkit-scrollbar-thumb:hover { background: #2563eb; }
+        
+        #banner-slider {
+            display: flex;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            width: 300%; 
+        }
+        .slide-item {
+            width: 33.333333%; 
+            flex-shrink: 0;
+        }
+    </style>
+</head>
+<body class="text-white antialiased selection:bg-accentCyan selection:text-white overflow-x-hidden relative">
+
+    <!-- PREMIUM HIGH-OPACITY PROBO BACKGROUND (Strictly Fixed & Scroll-Proof) -->
+    <div class="fixed inset-0 pointer-events-none overflow-hidden z-0 opacity-[0.35]">
+        
+        <!-- Probo Signature Exchange Dashboard Grid Layer -->
+        <div class="absolute inset-0 bg-[linear-gradient(to_right,#ffffff04_1px,transparent_1px),linear-gradient(to_bottom,#ffffff04_1px,transparent_1px)] bg-[size:36px_36px]"></div>
+        
+        <!-- Left Wing: High Momentum Green Growth Wave (SVG Asset) -->
+        <svg class="absolute top-[8%] left-[-2%] w-[50%] h-auto text-yesGreen" viewBox="0 0 600 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Neon Area Gradient Shading under curve -->
+            <path d="M0 350 C 100 360, 150 240, 250 200 C 350 160, 400 90, 560 50 L 560 400 L 0 400 Z" fill="url(#proboGreenGlow)" opacity="0.15"/>
+            <!-- Main Crisp Sharp Analytics Trend line -->
+            <path d="M0 350 C 100 360, 150 240, 250 200 C 350 160, 400 90, 560 50" stroke="currentColor" stroke-width="5" stroke-linecap="round"/>
+            <!-- Target Flash Sparkle -->
+            <circle cx="250" cy="200" r="6" fill="#030712" stroke="currentColor" stroke-width="3"/>
+            <circle cx="560" cy="50" r="10" fill="#00e676" class="animate-ping" opacity="0.4"/>
+            <circle cx="560" cy="50" r="6" fill="#00e676"/>
+            <!-- Tech Interface Crossbars -->
+            <path d="M120 160 H132 M126 154 V166" stroke="white" stroke-opacity="0.2" stroke-width="2"/>
+            <path d="M420 290 H432 M426 284 V296" stroke="white" stroke-opacity="0.2" stroke-width="2"/>
+            <defs>
+                <linearGradient id="proboGreenGlow" x1="280" y1="50" x2="280" y2="400" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#00e676" stop-opacity="1"/>
+                    <stop offset="1" stop-color="#030712" stop-opacity="0"/>
+                </linearGradient>
+            </defs>
+        </svg>
+
+        <!-- Right Wing: Dynamic Red Volatility Down-Wave (SVG Asset) -->
+        <svg class="absolute top-[42%] right-[-4%] w-[45%] h-auto text-noRed" viewBox="0 0 500 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M30 50 Q 150 100, 240 220 T 470 340 L 470 400 L 30 400 Z" fill="url(#proboRedGlow)" opacity="0.1"/>
+            <path d="M30 50 Q 150 100, 240 220 T 470 340" stroke="currentColor" stroke-width="5" stroke-linecap="round"/>
+            <circle cx="240" cy="220" r="6" fill="#030712" stroke="currentColor" stroke-width="3"/>
+            <!-- Digital Abstract Diamonds -->
+            <rect x="360" y="90" width="14" height="14" rx="2" transform="rotate(45 360 90)" stroke="currentColor" stroke-width="2.5" fill="none"/>
+            <rect x="140" y="290" width="10" height="10" rx="1.5" transform="rotate(45 140 290)" stroke="currentColor" stroke-width="2" fill="none"/>
+            <defs>
+                <linearGradient id="proboRedGlow" x1="250" y1="50" x2="250" y2="400" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#ff3d00" stop-opacity="1"/>
+                    <stop offset="1" stop-color="#030712" stop-opacity="0"/>
+                </linearGradient>
+            </defs>
+        </svg>
+
+        <!-- Dynamic Giant Watermark Labels (Probo Corporate Vibe) -->
+        <div class="absolute top-[22%] right-[5%] font-black text-[130px] text-white/[0.025] select-none tracking-widest">PRO-LIVE</div>
+        <div class="absolute bottom-[28%] left-[4%] font-black text-[130px] text-white/[0.025] select-none tracking-widest">P2P-HUB</div>
+
+        <!-- Extra Floating UI Network Circles -->
+        <div class="absolute top-[68%] left-[48%] w-24 h-24 rounded-full border border-dashed border-white/[0.04] animate-spin" style="animation-duration: 25s;"></div>
+    </div>
+
+    <!-- AMBIENT NEON GLOW BLURS -->
+    <div class="fixed top-[5%] left-0 w-[550px] h-[550px] bg-yesGreen/[0.09] rounded-full blur-[140px] pointer-events-none z-0"></div>
+    <div class="fixed bottom-[12%] right-0 w-[550px] h-[550px] bg-noRed/[0.09] rounded-full blur-[140px] pointer-events-none z-0"></div>
+
+
+    <!-- Header / Navbar -->
+    <header class="border-b border-gray-900 bg-brandDark/80 backdrop-blur-md sticky top-0 z-50 px-6 py-3">
+        <div class="max-w-6xl mx-auto flex justify-between items-center">
+            <a href="#" class="flex items-center">
+                <img src="20260524_201115.png" alt="Opino Brand Logo" class="h-9 w-auto object-contain transition duration-300 hover:opacity-95" onerror="this.src='https://placehold.co/180x45/0f1938/2563eb?text=OPINO'">
+            </a>
+            
+            <div class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-400">
+                <a href="#hero-banner" class="hover:text-white transition duration-200">Main Banner</a>
+                <a href="#simulator" class="hover:text-white transition duration-200">App Simulator</a>
+                <a href="#features" class="hover:text-white transition duration-200">Features</a>
+                <a href="#rewards" class="hover:text-white transition duration-200">Rewards</a>
+            </div>
+
+            <div>
+                <button onclick="window.location.href='#download-section'" class="bg-gradient-to-r from-accentCyan to-blue-700 text-white font-bold px-6 py-2.5 rounded-xl hover:opacity-90 transition-all duration-300 shadow-cyanGlow text-sm flex items-center gap-2">
+                    <span class="material-icons text-sm">download</span> Download APK
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- SECTION 1: HERO PROMOTIONAL BANNER -->
+    <section id="hero-banner" class="px-0 pt-0 pb-0 max-w-6xl mx-auto relative z-10">
+        <div class="rounded-0xl overflow-hidden border border-gray-800/60 shadow-[0_0_50px_rgba(37,99,235,0.15)] relative aspect-video w-full">
+            <div class="absolute inset-0 bg-gradient-to-t from-brandDark/90 via-transparent to-transparent z-10 pointer-events-none"></div>
+            
+            <div id="banner-slider" class="h-full">
+                <!-- Slide 1 -->
+                <div class="slide-item h-full">
+                    <img src="1779634921957.png" alt="Opino Banner 1" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/1200x675/0f1938/ffffff?text=Premium+Opinion+Trading'">
+                </div>
+                <!-- Slide 2 -->
+                <div class="slide-item h-full">
+                    <img src="1779728775481~2.png" alt="Opino Banner 2" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/1200x675/080f26/2563eb?text=Trade+Your+Opinion+Instantly'">
+                </div>
+                <!-- Slide 3 -->
+                <div class="slide-item h-full">
+                    <img src="https://placehold.co/1200x675/030712/ff6b00?text=Secure+UPI+Gateways" alt="Opino Banner 3" class="w-full h-full object-cover">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 2: SINGLE INTERACTIVE PHONE MOCKUP & COPY -->
+    <section id="simulator" class="relative px-6 py-16 max-w-6xl mx-auto z-10">
+        <div class="grid lg:grid-cols-12 gap-12 items-center">
+            
+            <!-- Left Side Content -->
+            <div class="lg:col-span-6 text-left">
+                <span class="inline-flex items-center gap-2 bg-brandCard border border-gray-800 text-gray-300 text-xs font-semibold px-4 py-2 rounded-full mb-6 backdrop-blur-sm">
+                    <span class="w-2 h-2 rounded-full bg-yesGreen animate-pulse"></span>
+                    India's Smart Reward Solution
+                </span>
+
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-black tracking-tight leading-[1.12] mb-6">
+                    Sahi Prediction<br>
+                    Behtareen <span class="text-transparent bg-clip-text bg-gradient-to-r from-yesGreen to-cyan-400">Income Source</span>!
+                </h1>
+
+                <p class="text-gray-400 text-sm md:text-base mb-8 leading-relaxed max-w-lg">
+                    Cricket analytics, dynamic pool contracts aur daily survey tasks. Opino app par har sahi answer aapko real cash rewards deta hai safely.
+                </p>
+
+                <div class="grid grid-cols-2 gap-4 mb-8 text-sm">
+                    <div class="flex items-center gap-2.5">
+                        <span class="material-icons-outlined text-yesGreen">check_circle</span>
+                        <span class="font-medium text-gray-200">Dynamic Yes/No Market</span>
+                    </div>
+                    <div class="flex items-center gap-2.5">
+                        <span class="material-icons-outlined text-accentCyan">trending_up</span>
+                        <span class="font-medium text-gray-200">P2P Fair Calculations</span>
+                    </div>
+                    <div class="flex items-center gap-2.5">
+                        <span class="material-icons-outlined text-goldCoin">account_balance_wallet</span>
+                        <span class="font-medium text-gray-200">Instant Cashout Gateway</span>
+                    </div>
+                    <div class="flex items-center gap-2.5">
+                        <span class="material-icons-outlined text-accentOrange">gpp_good</span>
+                        <span class="font-medium text-gray-200">Fraud Protection System</span>
+                    </div>
+                </div>
+
+                <div id="download-section" class="bg-brandCard/60 border border-gray-800/80 p-5 rounded-2xl max-w-lg relative backdrop-blur-sm">
+                    <div class="absolute -top-3 left-6 bg-gradient-to-r from-accentOrange to-orange-600 text-white text-[10px] font-bold tracking-wider px-4 py-1 rounded-md shadow-lg">
+                        🎁 ₹10.00 FREE SIGNUP WALLET BONUS
+                    </div>
+                    <p class="text-gray-400 text-xs mt-2 mb-4">Account verify hote hi aapka bonus seedhe promo balance me joda jayega.</p>
+                    <button onclick="triggerDownload()" class="w-full bg-gradient-to-r from-accentOrange to-orange-600 text-white font-bold py-3 rounded-xl hover:scale-[1.01] transition-all duration-300 flex justify-center items-center gap-2 text-sm shadow-orangeGlow">
+                        <span class="material-icons">download</span> Get Official Opino App (.APK)
+                    </button>
+                </div>
+            </div>
+
+            <!-- Right Side Phone Simulator -->
+            <div class="lg:col-span-6 flex justify-center items-center relative">
+                <div class="relative mx-auto w-[305px] h-[615px] bg-gray-950 rounded-[48px] border-[10px] border-slate-800 shadow-phoneShadow overflow-hidden ring-4 ring-slate-900/40 transition-all duration-500 hover:scale-[1.01]">
+                    
+                    <!-- Dynamic Dynamic Island Notch -->
+                    <div class="absolute top-2.5 left-1/2 transform -translate-x-1/2 w-28 h-5 bg-black rounded-full z-30 flex items-center justify-between px-3">
+                        <div class="w-2.5 h-2.5 rounded-full bg-slate-900"></div>
+                        <div class="w-1.5 h-1.5 rounded-full bg-slate-950"></div>
+                    </div>
+
+                    <div class="h-full w-full bg-brandDark text-white flex flex-col p-4 pt-11 select-none overflow-y-auto relative z-10">
+                        
+                        <div class="flex justify-between items-center mb-4">
+                            <div class="flex items-center gap-2">
+                                <img src="/IMG_20260524_204603.png" alt="Mini App Logo" class="w-8 h-8 rounded-lg border border-gray-800" onerror="this.src='https://placehold.co/100x100?text=Opino'">
+                                <div class="leading-tight">
+                                    <div class="text-[9px] text-gray-500 font-bold">Good Evening</div>
+                                    <div class="text-[13px] font-black text-white">ARIF</div>
+                                </div>
+                            </div>
+                            <span class="material-icons text-gray-400 text-lg">notifications_none</span>
+                        </div>
+
+                        <!-- Probo Style Core Card Balance Container -->
+                        <div class="bg-brandCard border border-gray-800/80 rounded-xl px-4 py-3 mb-3 flex justify-between items-center shadow-md">
+                            <div>
+                                <div class="text-[9px] text-gray-400 font-medium flex items-center gap-1">
+                                    <span class="material-icons text-[11px] text-goldCoin">payments</span> Balance Wallet
+                                </div>
+                                <div class="text-[19px] font-black text-white" id="app-wallet">₹100.00</div>
+                            </div>
+                            <button onclick="simAddMoney()" class="bg-white text-brandDark font-bold text-[10px] px-3 py-1.5 rounded-lg active:scale-95 transition-all shadow-sm">
+                                + Add Funds
+                            </button>
+                        </div>
+
+                        <div class="bg-gradient-to-r from-blue-950/60 to-brandCard border border-blue-900/40 p-3 rounded-xl mb-3 text-left">
+                            <div class="text-[8px] text-accentCyan font-bold tracking-wider uppercase mb-0.5">💥 EXCLUSIVE EVENT</div>
+                            <div class="text-[11px] font-bold text-gray-200">T20 Champions: Predict live matches now!</div>
+                        </div>
+
+                        <div class="flex justify-between items-center text-xs mb-2 font-bold px-0.5">
+                            <span class="text-gray-300">Active Pool Trades</span>
+                            <span class="text-accentCyan text-[10px] font-medium">See All</span>
+                        </div>
+
+                        <!-- Main Core Trading Contract Card -->
+                        <div class="bg-brandCard p-3.5 rounded-xl border border-gray-800/80 flex-1 flex flex-col justify-between">
+                            <div>
+                                <div class="flex justify-between items-center text-[8px] text-gray-400 mb-2">
+                                    <span class="bg-yesGreen/10 text-yesGreen px-2 py-0.5 rounded font-bold flex items-center gap-0.5">
+                                        <span class="w-1 h-1 rounded-full bg-yesGreen"></span> STABLE MARKET
+                                    </span>
+                                    <span class="text-gray-400">14.8K Traders active</span>
+                                </div>
+                                <h4 class="text-[12px] font-bold leading-snug text-gray-100">
+                                    Will India win the upcoming T20 championship final match?
+                                </h4>
+                            </div>
+
+                            <div class="my-3 bg-brandDark/50 p-2 rounded-lg border border-gray-900">
+                                <div class="flex justify-between text-[8px] text-gray-400 mb-1 font-mono">
+                                    <span>YES VOL: <b id="app-yes-contracts" class="text-yesGreen">10</b></span>
+                                    <span>NO VOL: <b id="app-no-contracts" class="text-noRed">10</b></span>
+                                </div>
+                                <div class="w-full h-1 bg-gray-800 rounded-full overflow-hidden flex">
+                                    <div id="app-progress-bar" class="bg-yesGreen h-full transition-all duration-300" style="width: 50%;"></div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <div class="grid grid-cols-2 gap-2 mb-2.5 text-center">
+                                    <div class="bg-brandDark p-1.5 rounded-lg border border-gray-800">
+                                        <div class="text-[7px] text-gray-400 font-bold uppercase">Yes Price</div>
+                                        <div id="app-yes-price" class="text-[13px] font-black text-yesGreen">₹5.00</div>
+                                    </div>
+                                    <div class="bg-brandDark p-1.5 rounded-lg border border-gray-800">
+                                        <div class="text-[7px] text-gray-400 font-bold uppercase">No Price</div>
+                                        <div id="app-no-price" class="text-[13px] font-black text-noRed">₹5.00</div>
+                                    </div>
+                                </div>
+
+                                <div class="grid grid-cols-2 gap-2 font-bold text-[11px]">
+                                    <button onclick="simBuy('YES')" class="bg-yesGreen text-brandDark font-black py-2 rounded-lg active:scale-95 transition-all shadow-md">
+                                        Buy Yes
+                                    </button>
+                                    <button onclick="simBuy('NO')" class="bg-noRed text-white font-black py-2 rounded-lg active:scale-95 transition-all shadow-md">
+                                        Buy No
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Application Footer Tabs Mockup -->
+                        <div class="border-t border-gray-900 pt-2.5 mt-3 flex justify-between text-[9px] text-gray-500 font-bold px-1">
+                            <div class="flex flex-col items-center text-accentCyan">
+                                <span class="material-icons text-sm">explore</span> Explore
+                            </div>
+                            <div class="flex flex-col items-center">
+                                <span class="material-icons text-sm">assignment</span> Surveys
+                            </div>
+                            <div class="flex flex-col items-center">
+                                <span class="material-icons text-sm">pie_chart</span> Portfolio
+                            </div>
+                            <div class="flex flex-col items-center">
+                                <span class="material-icons text-sm">account_balance_wallet</span> Wallet
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SECTION 3: PROBO ARCHITECTURE FEATURES -->
+    <section id="features" class="px-6 py-20 bg-brandNavy/30 border-y border-gray-900/60 backdrop-blur-sm z-10 relative">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <span class="text-xs text-accentCyan font-bold tracking-widest uppercase">Engine Integrity</span>
+                <h2 class="text-3xl md:text-5xl font-black mt-2 text-white">Built for Safe Operations</h2>
+                <p class="text-gray-400 mt-4 max-w-xl mx-auto text-sm md:text-base">
+                    Probo standard smart algorithms jo aapke wallet data aur matched transactions ko transparently secure rakhte hain.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8 text-left">
+                <!-- Card 1 -->
+                <div class="bg-brandCard/60 border border-gray-800/80 p-8 rounded-2xl hover:border-accentCyan/30 transition duration-300">
+                    <div class="w-12 h-12 rounded-xl bg-accentCyan/10 flex items-center justify-center text-accentCyan mb-6">
+                        <span class="material-icons">account_balance_wallet</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Tri-Wallet Architecture</h3>
+                    <p class="text-gray-400 text-xs md:text-sm leading-relaxed">
+                        Apne funds ko teen hisson (Deposit, Winnings, aur Bonus) me neatly tracking par rakhein bina kisi database error ke.
+                    </p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="bg-brandCard/60 border border-gray-800/80 p-8 rounded-2xl hover:border-accentOrange/30 transition duration-300">
+                    <div class="w-12 h-12 rounded-xl bg-accentOrange/10 flex items-center justify-center text-accentOrange mb-6">
+                        <span class="material-icons">balance</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Dynamic Price Match</h3>
+                    <p class="text-gray-400 text-xs md:text-sm leading-relaxed">
+                        Total contract supply ratios ke upar automatic math logic execute hota hai, jo absolute transparency maintain karta hai.
+                    </p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="bg-brandCard/60 border border-gray-800/80 p-8 rounded-2xl hover:border-yesGreen/30 transition duration-300">
+                    <div class="w-12 h-12 rounded-xl bg-yesGreen/10 flex items-center justify-center text-yesGreen mb-6">
+                        <span class="material-icons">link</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Verified Source Audits</h3>
+                    <p class="text-gray-400 text-xs md:text-sm leading-relaxed">
+                        Har event outcome real reference website se update kiya jata hai taaki users har settlement proof ko khud check kar sakein.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 4: REWARDS & SURVEY DISTRIBUTION -->
+    <section id="rewards" class="px-4 py-20 max-w-6xl mx-auto z-10 relative">
+        <div class="grid md:grid-cols-12 gap-12 items-center">
+            <div class="md:col-span-5 text-left">
+                <span class="text-xs text-accentOrange font-bold tracking-widest uppercase">Payout Policies</span>
+                <h2 class="text-3xl md:text-4xl font-black mt-2 leading-tight text-white">Transparent Settlements & Direct UPI Outflows</h2>
+                <p class="text-gray-400 text-sm mt-4 leading-relaxed">
+                    Opino ek non-biased trading hub hai. Do alag alag traders milkar pure ₹10 ki block deal coordinate karte hain, jisme contract wrap hone par flat 5% platform service processing fee deduct ki jati hai.
+                </p>
+                <div class="mt-6 space-y-3.5">
+                    <div class="flex items-center gap-3 text-sm text-gray-300">
+                        <span class="material-icons text-yesGreen text-sm">check</span>
+                        <span>₹0.50 se lekar ₹9.50 tak flexible active bidding caps</span>
+                    </div>
+                    <div class="flex items-center gap-3 text-sm text-gray-300">
+                        <span class="material-icons text-yesGreen text-sm">check</span>
+                        <span>Immediate payment routing options attached straight with server nodes</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="md:col-span-7 rounded-1xl overflow-hidden border border-gray-800 shadow-[0_0_40px_rgba(255,107,0,0.1)]">
+                <img src="1779596441292.png" alt="Opino Earnings Layout" class="w-full h-auto object-cover" onerror="this.src='https://placehold.co/1200x630/0f1938/ffffff?text=Opino+System+Surveys'">
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-gray-900 bg-black/40 py-12 px-6 text-center text-gray-500 text-xs relative z-10">
+        <div class="max-w-6xl mx-auto flex flex-col items-center">
+            <div class="flex items-center gap-3 mb-4">
+                <img src="20260524_201115.png" alt="Opino Logo Footer" class="h-9 w-auto object-contain" onerror="this.src='https://placehold.co/100x100?text=Opino'">
+            </div>
+            <p class="max-w-xl mx-auto mb-4 opacity-75">
+                Opino is a rewards and digital prediction service platform. Trading opinion pools involves active management and structural risks. Please play with care.
+            </p>
+            <p class="opacity-60">© 2026 Opino India Inc. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- REAL-TIME MATCH SIMULATION SCRIPTS -->
+    <script>
+        let currentSlide = 0;
+        const totalSlides = 3; 
+        const sliderTrack = document.getElementById('banner-slider');
+
+        function startAutoSlider() {
+            setInterval(() => {
+                currentSlide = (currentSlide + 1) % totalSlides;
+                const shiftPercentage = -(currentSlide * (100 / totalSlides));
+                sliderTrack.style.transform = `translateX(${shiftPercentage}%)`;
+            }, 3000); 
+        }
+
+        let currentYesTrades = 10;
+        let currentNoTrades = 10;
+        let walletBalance = 100.00;
+
+        function simBuy(type) {
+            const total = currentYesTrades + currentNoTrades;
+            let rawYesPrice = (currentYesTrades / total) * 10;
+            let yesPrice = Math.max(0.50, Math.min(9.50, rawYesPrice));
+            yesPrice = Math.round(yesPrice * 100) / 100;
+
+            let noPrice = 10.0 - yesPrice;
+            const cost = type === 'YES' ? yesPrice : noPrice;
+
+            if (walletBalance < cost) {
+                alert("Simulated wallet dry! Click 'Add Funds' to top-up instantly.");
+                return;
+            }
+
+            walletBalance -= cost;
+            if (type === 'YES') {
+                currentYesTrades++;
+            } else {
+                currentNoTrades++;
+            }
+
+            updateSimulatedUI();
+        }
+
+        function simAddMoney() {
+            walletBalance += 100.00;
+            updateSimulatedUI();
+        }
+
+        function updateSimulatedUI() {
+            const total = currentYesTrades + currentNoTrades;
+            let rawYes = (currentYesTrades / total) * 10;
+            let yesPrice = Math.max(0.50, Math.min(9.50, rawYes));
+            if (isNaN(yesPrice)) yesPrice = 5.0;
+            yesPrice = Math.round(yesPrice * 100) / 100;
+
+            let noPrice = Math.round((10.0 - yesPrice) * 100) / 100;
+
+            document.getElementById('app-yes-contracts').innerText = currentYesTrades;
+            document.getElementById('app-no-contracts').innerText = currentNoTrades;
+            document.getElementById('app-yes-price').innerText = `₹${yesPrice.toFixed(2)}`;
+            document.getElementById('app-no-price').innerText = `₹${noPrice.toFixed(2)}`;
+            document.getElementById('app-wallet').innerText = `₹${walletBalance.toFixed(2)}`;
+
+            const yesPercent = (currentYesTrades / total) * 100;
+            document.getElementById('app-progress-bar').style.width = `${yesPercent}%`;
+        }
+
+        function triggerDownload() {
+window.location.href = "https://www.mediafire.com/file/m7t472nubtba0j0/app-debug.apk/file";
+        }
+
+        window.onload = function() {
+            updateSimulatedUI();
+            startAutoSlider();
+        };
+    </script>
+</body>
+</html>
